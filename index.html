@@ -1,1 +1,53 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cricket Toss AI</title>
+<style>
+body{margin:0;background:#0b1020;color:white;font-family:Arial,sans-serif;padding:20px}
+header,.card{background:#17233a;padding:18px;border-radius:14px;margin-bottom:15px}
+h1{color:#42e6a4}
+h2{font-size:20px}
+p{color:#c3cee0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.number{font-size:25px;font-weight:bold;color:#42e6a4}
+button,select{padding:10px;border:0;border-radius:8px;margin:4px;background:#263954;color:white}
+.match{border:1px solid #354866;padding:15px;border-radius:12px;margin:12px 0}
+.small{font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>🏏 Cricket Toss AI</h1>
+<p>Cricket Toss Prediction Dashboard</p>
+</header>
+<div class="grid">
+<div class="card"><p>UPCOMING MATCHES</p><div class="number" id="total">3</div></div>
+<div class="card"><p>RECORDED ACCURACY</p><div class="number">—</div></div>
+</div>
+<h2>Today's Predictions</h2>
+<button onclick="show('All')">All</button>
+<button onclick="show('Men')">Men</button>
+<button onclick="show('Women')">Women</button>
+<div id="matches"></div>
+<h2>Results & Accuracy</h2>
+<div class="card"><p>Prediction history will appear here when results tracking is connected.</p></div>
+<p class="small">Demo only. Live match data is not connected. Cricket tosses are random; no prediction is guaranteed.</p>
+<script>
+const data=[
+{team:"Oman vs Nepal",gender:"Men",format:"ODI"},
+{team:"Afghanistan vs Zimbabwe",gender:"Men",format:"ODI"},
+{team:"Sample Women's Match",gender:"Women",format:"T20"}
+];
+function show(g){
+let a=data.filter(x=>g==="All"||x.gender===g);
+document.getElementById("total").textContent=a.length;
+document.getElementById("matches").innerHTML=a.map(x=>'<div class="match"><b>'+x.team+'</b><p>'+x.gender+' · '+x.format+'</p><p>Demo probability: 50% / 50%</p><p class="small">No verified live fixture or reliable toss advantage connected.</p></div>').join("");
+}
+show("All");
+</script>
+</body>
+</html>
+
